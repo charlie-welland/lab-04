@@ -14,12 +14,10 @@ def on_connect(client, userdata, flags, rc):
 
     print("Connected to server (i.e., broker) with result code "+str(rc))
     #replace user with your USC username in all subscriptions
-    client.subscribe("user/ipinfo")
+    client.subscribe("welland/ipinfo")
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
-    client.message_callback_add("user/ipinfo", on_message_from_ipinfo)
-
-
+    client.message_callback_add("welland/ipinfo", on_message_from_ipinfo)
 """This object (functions are objects!) serves as the default callback for 
 messages received when another node publishes a message this client is 
 subscribed to. By "default,"" we mean that this callback is called if a custom 
@@ -53,7 +51,7 @@ if __name__ == '__main__':
     server in the event no messages have been published from or sent to this 
     client. If the connection request is successful, the callback attached to
     `client.on_connect` will be called."""    
-    client.connect(host="68.181.32.115", port=11000, keepalive=60)
+    client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
 
     """In our prior labs, we did not use multiple threads per se. Instead, we
     wrote clients and servers all in separate *processes*. However, every 
